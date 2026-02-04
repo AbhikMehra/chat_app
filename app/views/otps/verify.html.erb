@@ -1,0 +1,52 @@
+<div style="max-width:400px; margin:40px auto; text-align:center;">
+
+  <h2 style="margin-bottom:10px;">🔐 Verify OTP</h2>
+  <p style="color:#6b7280; margin-bottom:20px;">
+    Enter the 6-digit OTP sent to your phone number
+  </p>
+
+  <%= form_with url: confirm_otp_path, local: true do %>
+
+    <%= text_field_tag :otp, nil,
+        placeholder: "Enter 6-digit OTP",
+        autofocus: true,
+        inputmode: "numeric",
+        maxlength: 6,
+        style: "width:100%;
+                padding:12px;
+                font-size:18px;
+                text-align:center;
+                border:1px solid #d1d5db;
+                border-radius:8px;
+                letter-spacing:4px;" %>
+
+    <br><br>
+
+    <%= submit_tag "Verify OTP",
+        style: "width:100%;
+                background:#2563eb;
+                color:white;
+                border:none;
+                padding:12px;
+                font-size:16px;
+                border-radius:8px;
+                cursor:pointer;" %>
+
+  <% end %>
+
+  <br>
+
+  <p style="font-size:14px; color:#9ca3af;">
+    Didn’t receive the OTP?
+  </p>
+
+  <%= button_to "Resend OTP",
+        otp_path,
+        method: :post,
+        style: "background:none;
+                border:none;
+                color:#2563eb;
+                cursor:pointer;
+                font-weight:bold;" %>
+
+</div>

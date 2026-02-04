@@ -1,0 +1,17 @@
+<h2>Chat Rooms</h2>
+
+<div style="margin-bottom:15px;">
+  <%= link_to "➕ Create New Chat Room",
+      new_chat_room_path,
+      style: "padding:8px 12px; background:#2563eb; color:white; border-radius:5px; text-decoration:none;" %>
+</div>
+
+<ul style="list-style:none; padding:0;">
+  <% @chat_rooms.each do |chat_room| %>
+    <li style="padding:12px; border-bottom:1px solid #e5e7eb;">
+      <%= link_to chat_room.name,
+          chat_room_path(chat_room),
+          style: "text-decoration:none; color:#111827; font-weight:500;" %>
+    </li>
+  <% end %>
+</ul>

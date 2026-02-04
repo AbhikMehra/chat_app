@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Chat App" %></title>
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Chat App">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <%= yield :head %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body style="margin:0; font-family: Arial, sans-serif; background:#f4f6f8;">
+
+  <!-- 🔝 NAVBAR -->
+  <nav style="background:#1f2937; color:white; padding:12px 20px;
+              display:flex; justify-content:space-between; align-items:center;">
+    <strong>💬 Rails Chat</strong>
+
+    <div style="display:flex; gap:12px; align-items:center;">
+      <% if user_signed_in? %>
+
+        <!-- 👤 USER EMAIL -->
+        <span><%= current_user.email %></span>
+
+        <!-- 📲 OTP / PHONE VERIFICATION -->
+        <% if current_user.phone_number.present? %>
+          <% if current_user.phone_verified? %>
+            <span style="color:#22c55e; font-weight:bold;">✅ Phone Verified</span>
+          <% else %>
+            <%= button_to "Verify Phone",
+                  otp_path,
+                  method: :post,
+                  style: "background:#2563eb; color:white; border:none;
+                          padding:6px 10px; border-radius:6px; cursor:pointer;" %>
+          <% end %>
+        <% else %>
+          <span style="color:#facc15;">📵 No phone number</span>
+        <% end %>
+
+        <!-- 🚪 LOGOUT -->
+        <%= button_to "Logout",
+              destroy_user_session_path,
+              method: :delete,
+              data: { turbo: false },
+              style: "background:none; color:white; border:none;
+                      cursor:pointer; font-weight:bold;" %>
+
+      <% end %>
+    </div>
+  </nav>
+
+  <!-- 📦 MAIN CONTENT -->
+  <div style="max-width:1000px; margin:20px auto;
+              background:white; padding:20px; border-radius:8px;">
+    <%= yield %>
+  </div>
+
+  </body>
+</html>
+

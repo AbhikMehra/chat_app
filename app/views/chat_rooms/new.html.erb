@@ -1,0 +1,12 @@
+<h1>Create New Chat Room</h1>
+
+<%= form_with model: @chat_room do |f| %>
+  <div>
+    <%= f.label :name %><br>
+    <%= f.text_field :name, placeholder: "Enter chat room name" %>
+  </div>
+
+  <br>
+
+  <%= f.submit "Create Chat Room" %>
+<% end %>

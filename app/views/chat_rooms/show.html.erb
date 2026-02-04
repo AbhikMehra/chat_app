@@ -1,0 +1,32 @@
+<h2><%= @chat_room.name %></h2>
+
+<div id="messages">
+  <%= render @messages %>
+</div>
+
+<div id="typing" class="text-sm text-gray-500"></div>
+
+<%= form_with model: [@chat_room, @message],
+              local: true,
+              data: { turbo: false } do |f| %>
+
+
+  <%= f.text_field :content,
+        placeholder: "Type message...",
+        oninput: "typing()" %>
+
+  <%= f.file_field :file %>
+
+  <%= f.submit "Send" %>
+
+<% end %>
+
+<hr>
+
+<h3>Users</h3>
+<% User.all.each do |user| %>
+  <p>
+    <%= user.email %>
+    <%= user.online ? "🟢 Online" : "⚫ Offline" %>
+  </p>
+<% end %>

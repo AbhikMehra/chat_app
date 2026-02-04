@@ -1,0 +1,2 @@
+module Api::HelloHelper
+end
