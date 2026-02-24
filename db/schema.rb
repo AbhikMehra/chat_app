@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_30_044555) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_23_192034) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -58,6 +58,18 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_044555) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.integer "amount"
+    t.datetime "created_at", null: false
+    t.string "razorpay_order_id"
+    t.string "razorpay_payment_id"
+    t.string "razorpay_signature"
+    t.string "status"
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_payments_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "email", default: "", null: false
@@ -80,4 +92,5 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_044555) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "messages", "chat_rooms"
   add_foreign_key "messages", "users"
+  add_foreign_key "payments", "users"
 end

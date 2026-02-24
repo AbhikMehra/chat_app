@@ -7,6 +7,8 @@ gem "sidekiq"
 
 gem "redis"
 
+gem 'razorpay'
+
 
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"

@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  amount: 1
+  razorpay_order_id: MyString
+  razorpay_payment_id: MyString
+  razorpay_signature: MyString
+  status: MyString
+
+two:
+  user: two
+  amount: 1
+  razorpay_order_id: MyString
+  razorpay_payment_id: MyString
+  razorpay_signature: MyString
+  status: MyString

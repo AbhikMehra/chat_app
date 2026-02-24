@@ -11,6 +11,8 @@ class User < ApplicationRecord
   has_many :messages
   validates :phone_number, presence: true
 
+  has_many :payments
+
   def online?
     last_seen_at.present? && last_seen_at > 2.minutes.ago
   end
